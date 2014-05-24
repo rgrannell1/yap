@@ -7,6 +7,8 @@
 	</body>
 	<script type="text/javascript">
 
+		"use strict"
+
 		YAP = ( function () {
 
 			var self = {}
@@ -87,6 +89,12 @@
 				return out
 			}
 
+
+
+
+
+
+
 			// our protagonist. Don't bother encoding.
 
 			var happy = {
@@ -96,10 +104,15 @@
 					'Σ ◕ ヮ ◕'
 			}
 
+
+
+
+
+
 			// the actual animation.
 
 			// scroll our happy face from the left to the right.
-			frames  = take(10, scrollLeft(happy.normal))
+			var frames  = take(10, scrollLeft(happy.normal))
 
 			// now make him speak.
 			frames = frames
@@ -107,23 +120,33 @@
 				.concat(repeat(8, happy.talking + ' -- very internet.'))
 				.concat(repeat(8, happy.talking + ' -- much URL.'))
 				.concat(happy.normal)
-				.reverse()
 
-			self.run =
-				function () {
+
+
+
+
+
+			self.run = ( function () {
+
+				var frameIth = 0
+
+				return function () {
 					var pid = setInterval(function () {
 
-						var frame = frames.pop()
+						var frame = frames[frameIth]
+						frameIth += 1
 
-						if (frame === undefined) {
+						if (frameIth > frames.length) {
+							frameIth = 0
 							clearInterval(pid)
 						} else {
 							history.pushState(null, '', '/' + frame);
 						}
 
 					}, 250)
+
 				}
-			}
+			})()
 
 			return self
 
