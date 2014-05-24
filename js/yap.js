@@ -61,7 +61,7 @@ var YAP = ( function () {
 
 	// our protagonist. Don't bother encoding.
 
-	var happy = {
+	const happy = {
 		normal:
 			'Σ ◕ ◡ ◕',
 		talking:
@@ -75,11 +75,8 @@ var YAP = ( function () {
 
 	// the actual animation.
 
-	// scroll our happy face from the left to the right.
-	var frames  = scrollLeft(happy.normal)
-
-	// now make him speak.
-	frames = frames
+	const frames =
+		scrollLeft(happy.normal)
 		.concat(repeat(4, happy.talking + ' -- Hi!'))
 		.concat(repeat(8, happy.talking + ' -- very internet.'))
 		.concat(repeat(8, happy.talking + ' -- much URL.'))
