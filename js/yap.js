@@ -39,34 +39,6 @@ var YAP = ( function () {
 
 
 
-	// selectors.
-
-	const take = (num, coll) => {
-		// number -> [any] -> [any]
-
-		if (num <= 0 || coll.length === 0) {
-			return []
-		} else {
-			return coll.slice(0, Math.min(num, coll.length))
-		}
-	}
-
-	const drop = (num, coll) => {
-		// number -> [any] -> [any]
-
-		if (coll.length === 0) {
-			return []
-		} else {
-			return coll.slice(num, coll.length)
-		}
-	}
-
-	const lastOf = coll => {
-		// [any] -> any
-
-		return coll[coll.length - 1]
-	}
-
 	// -- repeat a value several times.
 
 	const repeat = (num, val) => {
@@ -104,7 +76,7 @@ var YAP = ( function () {
 	// the actual animation.
 
 	// scroll our happy face from the left to the right.
-	var frames  = take(10, scrollLeft(happy.normal))
+	var frames  = scrollLeft(happy.normal)
 
 	// now make him speak.
 	frames = frames
